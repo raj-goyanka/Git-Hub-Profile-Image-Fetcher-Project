@@ -1,0 +1,37 @@
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+    <div class="container">
+      <a class="navbar-brand font-weight-bold" href="#"><i class="fas fa-camera-retro"></i> Github Profile Images</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+            <a class="nav-link font-weight-bolder" href="{% url 'home' %}"><i class="fa fa-fw fa-home"></i> </a>
+          </li>
+          
+          {% if not request.user.is_authenticated %}
+          <li class="nav-item active">
+            <a class="nav-link font-weight-bolder" href="{% url 'user_signin' %}">Login</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link font-weight-bolder" href="{% url 'user_signup' %}">SignUp</a>
+          </li>
+          {% else %}
+          <li class="nav-item active">
+            <a class="nav-link font-weight-bolder" href="{% url 'images' %}">Images
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link font-weight-bolder" href="{% url 'index' %}">Index</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link font-weight-bolder" href="{% url 'user_signout' %}">Logout</a>
+          </li>
+         {% endif %}
+        </ul>
+      </div>
+    </div>
+  </nav>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html lang="en">
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Github Profile Images</title>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+  <script src="https://kit.fontawesome.com/824e67b582.js" crossorigin="anonymous"></script>
+</head>
+
+<body style="background-color:paleturquoise;">
+
+  <!-- Navigation -->
+  {% include 'base.html' %}
+
+  <!-- Page Content -->
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        <h1 class="mt-5 font-weight-bold">Welcome {{user.username}} <i class="far fa-user"></i></h1>
+        <h1 class="mt-5">Add New Profile Image</h1>
+        {% if messages %}
+         {% for message in messages %}
+          <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            <strong>{{message}}</strong>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+         {% endfor %} 
+        {% endif %}
+            
+      
+      </div>
+    </div>
+  </div>
+
+<div class="container">
+  <!--<h2>Login</h2>-->
+  <form method="POST" action="{% url 'index' %}">
+    {% csrf_token %}
+    <div class="github_user jumbotron" style="background-color: ghostwhite;">
+      <label for="github_user" class="font-weight-bolder">Github Username:</label>
+      <input type="text" class="form-control" id="github_user" placeholder="Enter Github Username" name="github_user">
+      <input type="hidden" class="form-control" id="user" value="{{user.username}}" name="user">
+      <div class="text-center">
+        <button type="submit" class="btn btn-primary mt-4 font-weight-bolder" style="width: 250px;" >Submit</button>
+      </div>
+    </div>
+    
+  </form>
+</div>
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="{% static 'js/bootstrap.js' %}"></script>
+  <script src="{% static 'js/jquery.js' %}"></script>
+  <script src="{% static 'js/popper.js' %}"></script>
+
+</body>
+
+</html>
