@@ -1,6 +1,4 @@
 {% load static %}
-{% load socialaccount %}
-{% providers_media_js %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -66,8 +64,6 @@
    <h6 style="display: inline;">Not registered yet?</h6>
     <a href="{% url 'user_signup' %}">Create an Account</a>
   </div>
-
-  <a href="{% provider_login_url 'facebook' method='oauth2' %}">Facebook Login</a>
 
   <!-- Bootstrap core JavaScript -->
   <script src="{% static 'js/bootstrap.js' %}"></script>
