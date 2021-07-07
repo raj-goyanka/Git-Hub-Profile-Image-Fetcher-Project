@@ -84,7 +84,7 @@ body {
   {% include 'base.html' %}
 
 <div style="text-align:center">
-  <h2 class="font-weight-bolder mt-4">Your Images</h2>
+  <h2 class="font-weight-bolder mt-4">Uploaded Images</h2>
   <p>Click on the images below:</p>
 </div>
 
@@ -93,7 +93,12 @@ body {
   {% for image in git_hub reversed %}
   <div class="column">
     <img src="{{image.imagelink}}" alt="Nature" style="width:100%" onclick="myFunction(this);">
-    <p class="text-center font-weight-bold mt-4">User-{{image.githubuser}}</p>
+    <p class="text-center font-weight-bold mt-4">GitHubUser-{{image.githubuser}}</p>
+    <p class="text-center font-weight-bold mt-4">Uploaded By {{image.username}}</p>
+    <form action="{% url 'deleteimg' image.githubuser %}" method="post" class="text-center">
+      {% csrf_token %}
+      <button type="submit" class="btn btn-danger">Delete</button>
+    </form>
   </div>
   {% endfor %}
 </div>

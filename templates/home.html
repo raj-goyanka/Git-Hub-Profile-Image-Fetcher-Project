@@ -11,9 +11,10 @@
   </head>
 <body style="background-color: paleturquoise;">
     {% include 'base.html' %}
-     <h1 class="font-weight-bold mt-5 text-center">Welcome to <i class="fab fa-github"></i>GitHub Profile Images Fetcher Website!</h1>  
+    <h1 class="font-weight-bold mt-5 text-center">Welcome to <i class="fab fa-github"></i>GitHub Profile Images Fetcher Website!</h1>  
      <h3 class="text-center"> We can access anyones Profile Image using username.</h3>
      <a href="{% url 'user_signup' %}" class="btn btn-primary btn-lg mt-4 font-weight-bold" style="margin-left: 870px;">Join Us</a>
+     {% include 'footer.html' %} 
   <script src="{% static 'js/bootstrap.js' %}"></script>
   <script src="{% static 'js/jquery.js' %}"></script>
   <script src="{% static 'js/popper.js' %}"></script>

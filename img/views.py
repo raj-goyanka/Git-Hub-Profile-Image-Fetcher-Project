@@ -1,4 +1,5 @@
 #Imports
+from django.db.models import query
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib import messages,auth
@@ -8,7 +9,7 @@ from bs4 import BeautifulSoup as bs
 from .models import Github
 from django.conf import settings
 from django.core.mail import send_mail
-from .models import Profile
+from .models import Profile,Github,Quaries
 import uuid
 from django.http import HttpResponseRedirect
 
@@ -42,8 +43,7 @@ def index(request):
          url = 'https://github.com/'+github_user
          r = requests.get(url)
          soup = bs(r.content)
-         tem="@"+github_user
-         profile = soup.find('img', {'alt' :tem })['src']
+         profile = soup.find("img", {"alt" :"Avatar" })["src"]
          new_github = Github(
             githubuser = github_user,
             imagelink = profile,
@@ -131,3 +131,18 @@ def images(request):
 #This is Simply HomePage Function View.
 def home(request):
     return render(request,'home.html')
+
+def deleteimg(request,name):
+  if request.user.is_authenticated:
+    user=Github.objects.filter(githubuser=name)
+    user.delete()
+    return images(request)
+  else:
+    return redirect('/user_signin/') 
+
+def userquary(request):
+     email=request.POST['email']
+     msg=request.POST['msg']
+     query=Quaries(email=email,msg=msg)
+     query.save()
+     return redirect('/')

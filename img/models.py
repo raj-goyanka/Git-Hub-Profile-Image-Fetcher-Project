@@ -10,5 +10,8 @@ class Profile(models.Model):
     user=models.OneToOneField(User,on_delete=models.CASCADE)
     token=models.CharField(max_length=200)
     verify=models.BooleanField(default=False)
-
     
+
+class Quaries(models.Model):
+    email=models.EmailField()
+    msg=models.TextField()  
