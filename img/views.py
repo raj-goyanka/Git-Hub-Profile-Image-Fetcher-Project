@@ -1,3 +1,4 @@
+#Imports
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib import messages,auth
@@ -11,14 +12,20 @@ from .models import Profile
 import uuid
 from django.http import HttpResponseRedirect
 
-
-def email_sender(email,token):
+#This Function is used to send Varification mail to User's Email. 
+def email_sender(email,token,username):
     subject = 'Verify Email'
-    message = f'Hi Click On the Link to verify your account http://127.0.0.1:8000/account_verify/{token}/'
+    message = f'''
+      Hello , {username}
+          You registered an account on GitHub Image Fetcher WebSite, before being able to use you account you need to verify that this is your email address by clicking here: http://127.0.0.1:8000/account_verify/{token}/
+                  
+          Kind Regards,Team Goyanka'''
+    #Click On the Link to verify your account http://127.0.0.1:8000/account_verify/{token}/
     email_from = settings.EMAIL_HOST_USER
     recipient_list = [email,]
     send_mail(subject, message, email_from, recipient_list)
 
+#This Function is used to Varify Users Email Varification Token. 
 def account_verify(request,token):
     profile=Profile.objects.filter(token=token).first()
     profile.verify=True
@@ -26,7 +33,7 @@ def account_verify(request,token):
     messages.success(request,"Your account has been varified , You can LogIn Now")
     return HttpResponseRedirect('/user_signin/')
 
-
+#This Funtion is used For Web Scraping From GitHub.
 def index(request):
    if request.user.is_authenticated:
       if request.method == 'POST':
@@ -49,7 +56,10 @@ def index(request):
        return render(request, 'index.html')
    else:
         return redirect('/user_signin/')
+
+#This is Signup Function.
 def user_signup(request):
+  if not request.user.is_authenticated:
     if request.method == 'POST':
         username = request.POST['username']
         email = request.POST['email']
@@ -68,7 +78,7 @@ def user_signup(request):
                 uid=uuid.uuid4()
                 profile=Profile(user=new_user,token=uid)
                 profile.save()
-                email_sender(email,uid)
+                email_sender(email,uid,username)
                 messages.success(request,"Your Account Created Successfully , to Varify your Account Check Your Email !")
                 return redirect('/user_signup/')
         else:
@@ -76,8 +86,12 @@ def user_signup(request):
             return redirect('/user_signup/')
     else:
         return render(request, 'signup.html')
-
+  else: 
+      return user_signout(request)
+         
+#This is Signin Function.         
 def user_signin(request):
+  if not request.user.is_authenticated:
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
@@ -94,7 +108,10 @@ def user_signin(request):
             return redirect('/user_signin/')
     else:
         return render(request, 'login.html')
+  else:
+      return user_signout(request) 
 
+#This is Signout Function.
 def user_signout(request):
    if request.user.is_authenticated: 
      logout(request)
@@ -102,6 +119,7 @@ def user_signout(request):
    else:
      return redirect('/user_signin/') 
 
+#This Function is used to Display GitHub Users Images. 
 def images(request):
    if request.user.is_authenticated:
      username = request.user
@@ -110,5 +128,6 @@ def images(request):
    else:
       return redirect('/user_signin/') 
 
+#This is Simply HomePage Function View.
 def home(request):
     return render(request,'home.html')
