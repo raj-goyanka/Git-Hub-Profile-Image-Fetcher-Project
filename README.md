@@ -1,6 +1,5 @@
-# Git-Hub-Profile-Image-Fetcher-Project
-![home page](https://user-images.githubusercontent.com/75495749/124852719-581ee000-dfc2-11eb-9bd7-b4ccd8313752.png)
-![login page](https://user-images.githubusercontent.com/75495749/124852726-5b19d080-dfc2-11eb-984a-55c6a2fe873d.png)
-![sign up](https://user-images.githubusercontent.com/75495749/124852729-5c4afd80-dfc2-11eb-87d3-08e9c352604c.png)
-![images](https://user-images.githubusercontent.com/75495749/124852734-60771b00-dfc2-11eb-96f0-11ff13917f49.png)
-![index page](https://user-images.githubusercontent.com/75495749/124852738-6240de80-dfc2-11eb-831a-cc8cf0bf6578.png)
+# Git-Hub-Profile-Image-Fetcher-Pro![home page](https://user-images.githubusercontent.com/75495749/124853314-4d187f80-dfc3-11eb-9f60-e2591c67c96a.png)
+![login page](https://user-images.githubusercontent.com/75495749/124853325-4f7ad980-dfc3-11eb-98aa-9b153b186e4a.png)
+![sign in](https://user-images.githubusercontent.com/75495749/124853332-50ac0680-dfc3-11eb-8d30-c7b9f1504d20.png)
+![images](https://user-images.githubusercontent.com/75495749/124853335-5275ca00-dfc3-11eb-9ef7-4ea26eddec8e.png)
+![index page](https://user-images.githubusercontent.com/75495749/124853340-53a6f700-dfc3-11eb-9464-dabe666361dc.png)
